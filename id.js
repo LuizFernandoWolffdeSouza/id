@@ -1,8 +1,9 @@
 const prompt = require('prompt-sync')()
 const adicionar = require('./adicionar')
 let contatos = require('./contatos')
-const listar = require ('./listar')
-const remover = require ('./remover')
+const listar = require('./listar')
+const remover = require('./remover')
+const atualizar = require('./atualizar')
 
 
 menu()
@@ -20,7 +21,7 @@ function menu(params) {
             let nome = prompt('Digite o seu nome: ')
             let telefone = prompt('Digite o seu telefone: ')
             let email = prompt('Digite o seu email: ')
-            adicionar({nome:nome, telefone:telefone, email:email})
+            adicionar({ nome: nome, telefone: telefone, email: email })
             menu()
 
             break;
@@ -29,19 +30,34 @@ function menu(params) {
             menu()
             break;
         case '3':
-            atualizar()
+           
+            if (contatos.length == 0) {
+                console.log("Nenhum contato cadastrado")
+        
+            } else {
+                listar()
+                index = Number(prompt("Digite o numero do id que deseja atualizar: "))
+                let novoNome = prompt('Digite o seu nome: ')
+                let novoTelefone = prompt('Digite o seu telefone: ')
+                let novoEmail = prompt('Digite o seu email: ')
+                atualizar(index ,{ nome:novoNome, telefone:novoTelefone , email:novoEmail })
+                    console.log("Contato atualizado com sucesso")
+                    
+                }
+             menu()
             break;
         case '4':
             if (contatos.length == 0) {
                 console.log("Nenhum contato cadastrado")
-        
+
             }
             else {
-                let remover = prompt("Digite qual contato deseja remover: ")
-                var indice = Number(remover) - 1
+                listar()
+                let numero = prompt("Digite qual contato deseja remover: ")
+                var indice = Number(numero) - 1
                 remover(indice)
             }
-            
+            menu()
             break;
 
         default:
@@ -49,22 +65,6 @@ function menu(params) {
     }
 }
 
-function atualizar(contato) {
-    if (contato.length === 0) {
-        console.log("Nehuma residência cadastrada")
-    }
-    else{
-        let nova = prompt('Digite o nome da residência que deseja alterar: ')
-        let index  = Number(nova) - 1
-        if( index >= 0 && index <= residencias.length) {
-            let  nome = prompt('Digite o seu bairro:')
-            let  telefone= prompt("Digite o sua rua: ")
-            let email= Number (prompt('Digite o numcasa: '))
-            let morador = [prompt("Digite o nome de moradores na residência: ")]
-            residencias[index ] = {bairro, rua ,numcasa, moradores:morador}
-            console.log("Residência atualizada com sucesso: ")
-        }
-    }
-}
+
 
 

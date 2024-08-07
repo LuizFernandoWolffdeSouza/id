@@ -1,22 +1,17 @@
-let usuarios = require('./id')
+let contatos = require('./contatos')
 
-
-
-function atualizar(contato) {
-    if (contato.length === 0) {
-        console.log("Nehuma residência cadastrada")
+function atualizar(id,novousuario) {
+    const index = Number(contatos.findIndex(cont => cont.id === id))
+    if (index !== -1) {
+        contatos[index] = {id, ...novousuario}
     }
-    else{
-        let nova = prompt('Digite o nome da residência que deseja alterar: ')
-        let index  = Number(nova) - 1
-        if( index >= 0 && index <= residencias.length) {
-            let  nome = prompt('Digite o seu bairro:')
-            let  telefone= prompt("Digite o sua rua: ")
-            let email= Number (prompt('Digite o numcasa: '))
-            let morador = [prompt("Digite o nome de moradores na residência: ")]
-            residencias[index ] = {bairro, rua ,numcasa, moradores:morador}
-            console.log("Residência atualizada com sucesso: ")
-        }
-        callback()
-    }
+        
+    
+   /* contato.id = contatos.length +1
+    contatos[id] = (id,{nome,telefone,email})*/
 }
+  
+
+module.exports = atualizar
+
+

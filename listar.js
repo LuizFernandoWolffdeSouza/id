@@ -5,7 +5,7 @@ function listar() {
         console.log("Nehuma residência cadastrada")
     }
     contatos.forEach((contato ) => {
-        console.log(`${contato.id}.${contato.nome} .${contato.telefone} .   .${contato.email}`);
+       console.log(contato);
     })
 }
 module.exports = listar
