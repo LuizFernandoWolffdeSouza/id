@@ -5,11 +5,8 @@ function atualizar(id,novousuario) {
     if (index !== -1) {
         contatos[index] = {id, ...novousuario}
     }
-        
-    
-   /* contato.id = contatos.length +1
-    contatos[id] = (id,{nome,telefone,email})*/
 }
+
   
 
 module.exports = atualizar
